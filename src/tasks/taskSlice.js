@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { comment } from "postcss";
 
 const initialState = [
   {
@@ -14,7 +13,7 @@ const initialState = [
     descripcion: "Descripcion de la tarea 2",
     completed: false,
   },
-];
+]
 
 export const taskSlice = createSlice({
   name: "tasks",
