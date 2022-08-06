@@ -32,7 +32,12 @@ export const taskSlice = createSlice({
     },
     deleteTask: (state, action) => {
       const taskFound = state.find((task) => task.id === action.payload);
-      console.log(taskFound);
+      if(taskFound){
+        state.splice(state.indexOf(taskFound),1) //el splice  usa dos parametros 
+        // el primero es el ndice de la tarea y el segundo paramentro es la cantidad de elementos 
+        // a quitar 
+        
+      }
     },
   },
 });
