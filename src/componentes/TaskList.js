@@ -8,7 +8,7 @@ export default function TaskList() {
 
   return (
     <div>
-      {tasks.map((task) => (
+      {tasks.map((task => (
         <div key =  {task.id}>
           <h2>{task.title}</h2>
           <p> {task.descripcion} </p>
