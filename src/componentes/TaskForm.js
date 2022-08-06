@@ -1,11 +1,17 @@
 import React from "react";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addTask } from "../tasks/taskSlice"; 
+import { v4 as uuid } from "uuid";
 
 export default function TaskForm() {
   const [task, setTask] = useState({
     title: "",
     descripcion: "",
   });
+
+  const dispatch = useDispatch() 
+  //esta sera la funcion que me permitira disparar eventos desde el slice 
 
   const handleChange = (e) => {
     setTask({
@@ -16,8 +22,10 @@ export default function TaskForm() {
 
 const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(task)
-
+    dispatch(addTask({
+        ...task,
+        id: uuid(),
+    }))
 }
 
   return (
