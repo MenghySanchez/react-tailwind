@@ -3,12 +3,15 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addTask } from "../tasks/taskSlice"; 
 import { v4 as uuid } from "uuid";
+import { useNavigate } from "react-router-dom";
 
 export default function TaskForm() {
   const [task, setTask] = useState({
     title: "",
     descripcion: "",
   });
+
+  const navigate = useNavigate();
 
   const dispatch = useDispatch() 
   //esta sera la funcion que me permitira disparar eventos desde el slice 
@@ -26,6 +29,7 @@ const handleSubmit = (e) => {
         ...task,
         id: uuid(),
     }))
+    navigate('/')
 }
 
   return (
