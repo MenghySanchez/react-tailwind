@@ -1,9 +1,9 @@
 import React from "react";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { addTask } from "../tasks/taskSlice"; 
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { addTask , editTask} from "../tasks/taskSlice";
 import { v4 as uuid } from "uuid";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function TaskForm() {
   const [task, setTask] = useState({
@@ -12,25 +12,40 @@ export default function TaskForm() {
   });
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  //esta sera la funcion que me permitira disparar eventos desde el slice
 
-  const dispatch = useDispatch() 
-  //esta sera la funcion que me permitira disparar eventos desde el slice 
+  const params = useParams();
+  const tasks = useSelector(state => state.tasks)
 
   const handleChange = (e) => {
     setTask({
-        ...task,
-        [e.target.name]: e.target.value,
+      ...task,
+      [e.target.name]: e.target.value,
     });
-};
+  };
 
-const handleSubmit = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(addTask({
-        ...task,
-        id: uuid(),
-    }))
-    navigate('/')
-}
+
+    if(params.id){
+      dispatch(editTask(task))
+    }else{
+      dispatch(
+        addTask({
+          ...task,
+          id: uuid(),
+        })
+      );
+    }
+    navigate("/");
+  };
+
+  useEffect(() => {
+    if (params.id) {
+      setTask(tasks.find((task) => task.id === params.id));
+    }
+  }, [params, tasks]);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -39,6 +54,7 @@ const handleSubmit = (e) => {
         type="text"
         placeholder="Titulo"
         onChange={handleChange}
+        value = {task.title}
         className="input input-bordered input-primary w-full max-w-xs"
       />
       <textarea
@@ -46,9 +62,10 @@ const handleSubmit = (e) => {
         className="textarea textarea-primary"
         placeholder="Bio"
         onChange={handleChange}
+        value = {task.descripcion}
       />
 
-      <button className="btn btn-outline btn-primary" >Salvar</button>
+      <button className="btn btn-outline btn-primary">Salvar</button>
     </form>
   );
 }
