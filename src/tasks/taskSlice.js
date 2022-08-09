@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+/* The initial state of the reducer. */
 const initialState = [
   {
     id: "1",
@@ -19,30 +20,26 @@ export const taskSlice = createSlice({
   name: "tasks",
   initialState,
   reducers: {
+   
+    /* Adding a new task to the state. */
     addTask: (state, action) => {
-      // metodo para agregar la tarea
       state.push(action.payload);
-      /**
-       *  [...state, action.payload]
-       * la linea anterior es la forma como tradicionalmente se agrega
-       * un elemento con react, sin embargo para comprension mas simple desde js
-       * usamo la funcion push , asi es mas sencillo entender que estamos
-       * cargado un bloque de info
-       */
     },
+    /* Finding the task with the id that is passed in the action payload and then removing it from the
+    state. */
     deleteTask: (state, action) => {
       const taskFound = state.find((task) => task.id === action.payload);
       if(taskFound){
-        state.splice(state.indexOf(taskFound),1) //el splice  usa dos parametros 
-        // el primero es el ndice de la tarea y el segundo paramentro es la cantidad de elementos 
-        // a quitar 
-        
+        state.splice(state.indexOf(taskFound),1)    
       }
     },
+    /* A reducer that is used to edit a task. */
     editTask:(state, action)=>{
+     /* Destructuring the payload of the action and then finding the task with the id that is passed in
+     the action payload. */
      const {id, title, descripcion} = action.payload
-
      const foundTask = state.find(task => task.id === id)
+     /* Checking if the task was found and then updating the title and description of the task. */
      if(foundTask ){
       foundTask.title = title
       foundTask.descripcion =  descripcion

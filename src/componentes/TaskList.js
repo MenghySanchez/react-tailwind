@@ -5,9 +5,16 @@ import { deleteTask } from "../tasks/taskSlice";
 import { Link } from "react-router-dom";
 
 export default function TaskList() {
+  /* Getting the tasks from the Redux store. */
   const tasks = useSelector((state) => state.tasks);
+  /* A hook that gives us access to the dispatch function. */
   const dispatch = useDispatch();
 
+  /**
+   * The handleDelete function takes an id as an argument and dispatches the deleteTask action with the
+   * id as an argument.
+   * @param id - the id of the task to be deleted
+   */
   const handleDelete = (id) => {
     dispatch(deleteTask(id));
   };

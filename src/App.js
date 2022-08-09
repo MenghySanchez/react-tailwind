@@ -5,7 +5,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="bg-zinc-900 h-screen text-white">
+/* Setting the background color to slate-900 and the text color to slate-300. */
+    <div className="bg-slate-900 h-screen text-slate-300">
       <h1> Kanban Table</h1>
       <div className="flex items-center justify-center h-full">
       <BrowserRouter>
