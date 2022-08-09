@@ -62,8 +62,17 @@ export default function TaskList() {
                   focus:ring-offset-indigo-200 
                   text-white 
                     w-full 
-                    transition ease-in duration-200 text-center 
-                    text-xs font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2  rounded-lg "
+                    transition 
+                    ease-in 
+                    duration-200 
+                    text-center 
+                    text-xs 
+                    font-semibold 
+                    shadow-md 
+                    focus:outline-none 
+                    focus:ring-2 
+                    focus:ring-offset-2  
+                    rounded-lg "
                     onClick={() => handleDelete(task.id)}
                   >
                     Eliminar

@@ -65,24 +65,61 @@ export default function TaskForm() {
   }, [params, tasks]);
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className=" bg-zinc-800 
+                                                max-w-sm 
+                                                p-4 
+                                                mb-1
+                                                rounded-lg ">
+      <label 
+      htmlFor="title"
+      className=" block 
+                  font-bold">Nota</label>
       <input
         name="title"
         type="text"
         placeholder="Titulo"
         onChange={handleChange}
         value = {task.title}
-        className="input input-bordered input-primary w-full max-w-xs"
+        className=" w-full 
+                    p-2
+                    rounded-md
+                    bg-zinc-600
+                    mb-2
+                    text-white"
+        required
       />
       <textarea
         name="descripcion"
-        className="textarea textarea-primary"
-        placeholder="Bio"
+        placeholder="Descripciòn de la actividad"
         onChange={handleChange}
         value = {task.descripcion}
+        className=" w-full 
+                    p-2
+                    rounded-md
+                    bg-zinc-600
+                    mb-2
+                    text-white"
+        required
       />
 
-      <button className="btn btn-outline btn-primary">Salvar</button>
+      <button className="py-1 px-2   
+                  bg-indigo-600 
+                  hover:bg-indigo-700 
+                  focus:ring-indigo-500 
+                  focus:ring-offset-indigo-200 
+                  text-white 
+                    w-full 
+                    transition 
+                    ease-in 
+                    duration-200 
+                    text-center 
+                    text-xs 
+                    font-semibold 
+                    shadow-md 
+                    focus:outline-none 
+                    focus:ring-2 
+                    focus:ring-offset-2  
+                    rounded-lg ">Guardar</button>
     </form>
   );
 }
